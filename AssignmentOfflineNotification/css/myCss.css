@@ -1,0 +1,15 @@
+#status {
+  position: fixed;
+  width: 90%;
+  font: bold 1em sans-serif;
+  color: #FFF;
+  padding: 0.5em;
+  border-radius:10px;
+}
+.online {
+  background-color: #4CAF50;
+}
+
+.offline {
+  background-color: #f44336;
+} 

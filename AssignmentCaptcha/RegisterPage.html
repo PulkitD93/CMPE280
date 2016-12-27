@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registeration Page</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Registration Page">
+	<meta name="author" content="Pulkit Dureja">
+	<meta name="keywords" content="Registration, Student">
+	<script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="css/Pulkit.css">
+	<script src="js/myJs.js"></script>
+	<script type="text/javascript">
+	<!--
+	function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function revDrop(ev) {
+	
+}
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var elt= document.getElementById(data);
+    elt.setAttribute("id","dropImg");
+    ev.target.appendChild(elt);
+    var sbtn=document.getElementById("submitBtn");
+   if(data==="drag1"){
+    	sbtn.setAttribute("class", "submit");
+    	sbtn.removeAttribute("disabled");
+    	
+    	//$("#submitBtn").attr('class','submit');
+    	//$("#submitBtn").removeAttr("disabled");
+    }
+    else{
+    	
+    	alert("That's a DOG HOOMAN!!");
+    	var parentDiv=document.getElementById("div1").parentNode;
+       	var cat=document.createElement("img");
+    	cat.setAttribute("src", "img/Cat.jpg");
+    	cat.setAttribute("draggabled", "true");
+    	cat.setAttribute("id", "drag1");
+    	cat.setAttribute("width", "100");
+    	cat.setAttribute("ondragstart", "drag(event)");
+    	var dog=document.createElement("img");
+    	dog.setAttribute("src", "img/dog.jpg");
+    	dog.setAttribute("draggabled", "true");
+    	dog.setAttribute("id", "drag2");
+    	dog.setAttribute("width", "100");
+    	dog.setAttribute("ondragstart", "drag(event)");
+    	sbtn.setAttribute("class", "submit-disable");
+       	sbtn.setAttribute("disabled", "disabled");
+       	var parentDiv=document.getElementById("div1").parentNode;
+       	
+       	var dropbox=document.getElementById("div1");
+       	if(!document.getElementById("drag1"))	//inserting cat if it doesnt exist
+       	parentDiv.insertBefore(cat,dropbox);
+       	parentDiv.insertBefore(dog,dropbox);
+       	dropbox.removeChild(document.getElementById("dropImg"));
+
+    }
+}
+-->
+	</script>
+</head>
+<body>
+<!--Alert here
+-->
+
+<header><h2>Registration</h2></header>
+<hr>
+
+<form>
+	<table valign="top">
+	<tr>
+	<td>
+	User ID:</td>
+	<td>
+	<input type="text" id="userId" required></td>
+	</tr>
+	<tr>
+	<td>
+	Password:</td>
+	<td>
+	<input type="password" id="pass" title="Must be between 7-20 characters in length and include 4 alpha characters; 1 numeric character(0,9) or 1 special character (!,#,$,%). The password is case sensitive and must not contain spaces or be the same as your user id" required>
+	</td>
+
+	</tr>
+	<tr hidden id="pStren">
+	<td >
+	Password Strength
+	</td>
+	<td><progress value="0" max="5"></progress></td>
+	
+	</tr>
+	<tr>
+	<td>
+	Verify password</td>
+	<td>
+	<input type="password" id="vPass" required></td>
+	</tr>
+	<tr>
+	<td>
+	Email Address</td>
+	<td>
+	<input type="email" id="email" required></td>
+	</tr>
+	<tr>
+	<td>
+	Verify Email Address</td>
+	<td>
+	<input type="email" id="vEmail" required></td>
+	</tr>
+	<tr>
+	<td>
+	Security Question </td>
+	<td>
+	<input list="Question" id="SecurityQ0" required>
+	<datalist id="Question" >
+		<option value="Sum of 2 + 3 ="></option>
+		<option value="Sum of 100 + 200 ="></option>
+		<option value="23 X 100 ="></option>
+		<option value="Capital of India"></option>
+		<option value="Capital of USA"></option>
+	</datalist></td>
+	</tr>
+	<tr>
+	<td>
+	Security Answer</td>
+	<td>
+	<input type="text" id="SecurityA0" required></td>
+	</tr>
+	<tr>
+	<td>
+	Security Question </td>
+	<td>
+	<input list="Question" id="SecurityQ1" required>
+	<datalist id="Question" >
+		<option value="Sum of 2 + 3 ="></option>
+		<option value="Sum of 100 + 200 ="></option>
+		<option value="23 X 100 ="></option>
+		<option value="Capital of India"></option>
+		<option value="Capital of USA"></option>
+	</datalist></td>
+	</tr>
+	<tr>
+	<td>
+	Security Answer</td>
+	<td>
+	<input type="text" id="SecurityA1" required></td>
+	</tr>
+	<tr>
+	<td>
+	Mobile</td>
+	<td>
+	<input type="tel" id="mnumber"></td>
+	</tr>
+	<tr>
+	<td>
+	Address</td>
+	<td><textarea rows="4" cols="50" id="address"></textarea></td>
+	</tr>
+	<tr>
+	<td>
+	</td>
+	<td>Areas you may be interested in:<br>
+	<textarea rows="8" cols="50" id="AOI"></textarea></td>
+	</tr>
+	</table>
+	<fieldset id="captcha">
+    <legend>Captcha: Verify that you are human</legend>
+    <p>Drag the cat into the box</p>
+    <img id="drag1" src="img/Cat.jpg" draggable="true" ondragstart="drag(event)" width="100">
+    <img id="drag2" src="img/dog.jpg" draggable="true" ondragstart="drag(event)" width="100">
+
+	<div class="drop-box" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" width="100"></div>
+    </fieldset>
+    
+	<tr>
+		<td>
+		</td>
+		<td>
+		<button type="submit" id="submitBtn" class="submit-disable" value="Register" disabled>Register</button>
+	<button type="reset" class="reset" value="cancel">Cancel</button></td>
+	</tr>
+	
+
+	</form>
+	
+</body>
+</html>

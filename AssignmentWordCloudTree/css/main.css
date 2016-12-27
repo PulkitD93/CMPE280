@@ -1,0 +1,11 @@
+#inputTextBox {
+    display: inline-block;
+    border: 2px solid black;
+    max-height: 200px;
+    border-radius: 2%;
+    background: linear-gradient(to bottom, #bfdfff 0%,#78b3ed 100%);
+}
+body{
+
+    font-family:"Times New Roman", Times, serif;
+}    

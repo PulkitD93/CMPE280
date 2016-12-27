@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>Pizza Builder</title>
+	<meta name="author" content="Pulkit Dureja">
+	<meta name="description" content="Pizza Builder">
+	<link rel="stylesheet" type="text/css" href="css/pizza.css">
+	<script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/diaGen.js"></script>
+	
+</head>
+<body>
+	<h1 align="center">Build Your Own Pizza</h1>
+	<div class="progressWrapper progress" > 
+		<div class="leftEndcap progress__step progress__step--static is-hidden@handheld">(</div>
+		<div class="step progress__step c-sizeCrust activeStep" id="sizeCrust">Size &amp; Crust</div>
+		<div class="seperator progress__step progress__step--static activeSeperator">/</div>
+		<div class="step progress__step c-cheeseSauce" id="cheeseSauce">Cheese &amp; Sauce</div>
+		<div class="seperator progress__step progress__step--static">/</div>
+		<div class="step progress__step c-toppings" id="toppings">Toppings</div>
+		<div class="rightEndcap progress__step progress__step--static is-hidden@handheld">)</div>
+	</div>
+	<form action="">
+		<div class="card card--pop card--pizza-options">
+			<div id="sizeCrustWrapper" class="is-hidden grid js-sizeCrustWrapper" style="display: block;">
+				<div class="grid__cell--1"> 
+					<h2 class="step-title">Choose Size &amp; Crust</h2>
+				</div>
+
+				<div class="product grid__cell--1 grid__cell--1/4@desktop grid__cell--1@widescreen">
+					<h3 class="section-title">Hand Tossed</h3>
+					<p class="section-description">Garlic-seasoned crust with a rich, buttery taste.</p>
+					<div class="row"> <label> <input data-flavorcode="HANDTOSS" data-sizecode="10" name="S_PIZZA|Variant" type="radio" value="10SCREEN" class="c-crust-10SCREEN"><span class="btn--toggle">Small (10")</span> </label>
+					</div>
+					<div class="row"><label> <input data-flavorcode="HANDTOSS" data-sizecode="12" name="S_PIZZA|Variant" type="radio" value="12SCREEN" class="c-crust-12SCREEN"> <span class="btn--toggle">Medium (12")</span> </label>
+					</div>
+					<div class="row"> <label> <input data-flavorcode="HANDTOSS" data-sizecode="14" name="S_PIZZA|Variant" type="radio" value="14SCREEN" class="c-crust-14SCREEN" checked> <span class="btn--toggle">Large (14")</span> </label>
+					</div>
+				</div>
+				<div class="product grid__cell--1 grid__cell--1/4@desktop grid__cell--1@widescreen">
+					<h3 class="section-title">Handmade Pan</h3>
+					<p class="section-description">Two layers of cheese, toppings to the edge, baked in a pan for a crust that is golden and crispy with a buttery taste.</p>
+					<div class="row"> <label> <input data-flavorcode="NPAN" data-sizecode="12" name="S_PIZZA|Variant" type="radio" value="P12IPAZA" class="c-crust-P12IPAZA"> <span class="btn--toggle">Medium (12")</span> </label> </div>
+				</div>
+				<div class="product grid__cell--1 grid__cell--1/4@desktop grid__cell--1@widescreen">
+					<h3 class="section-title">Crunchy Thin Crust</h3>
+					<p class="section-description">Thin enough for the optimum crispy to crunchy ratio.</p>
+					<div class="row"> <label> <input data-flavorcode="THIN" data-sizecode="12" name="S_PIZZA|Variant" type="radio" value="12THIN" class="c-crust-12THIN"> <span class="btn--toggle">Medium (12")</span> </label>
+					</div>
+					<div class="row"> <label> <input data-flavorcode="THIN" data-sizecode="14" name="S_PIZZA|Variant" type="radio" value="14THIN" class="c-crust-14THIN"> <span class="btn--toggle">Large (14")</span> </label> </div>
+				</div>
+				<div class="product grid__cell--1 grid__cell--1/4@desktop grid__cell--1@widescreen">
+					<h3 class="section-title">Brooklyn Style</h3>
+					<p class="section-description">Hand stretched to be big, thin and perfectly foldable.</p>
+					<div class="row"> <label> <input data-flavorcode="BK" data-sizecode="14" name="S_PIZZA|Variant" type="radio" value="PBKIREZA" class="c-crust-PBKIREZA"> <span class="btn--toggle">Large (14")</span> </label> </div>
+					<div class="row"> <label> <input data-flavorcode="BK" data-sizecode="16" name="S_PIZZA|Variant" type="radio" value="P16IBKZA" class="c-crust-P16IBKZA"> <span class="btn--toggle">X-Large (16")</span> </label> </div>   </div>
+					<div class="product grid__cell--1 grid__cell--1/4@desktop grid__cell--1@widescreen" style="border: 0px; clear: left; min-height: 0px;">
+						<h3 class="section-title">Gluten Free Crust</h3>
+						<p class="section-description">Domino's pizza made with a Gluten Free Crust.</p>
+						<div class="row"> <label> <input data-flavorcode="GLUTENF" data-sizecode="10" name="S_PIZZA|Variant" type="radio" value="P10IGFZA" class="c-crust-P10IGFZA"> <span class="btn--toggle">Small (10")</span> </label> </div>
+					</div>
+				</div>
+			</div>
+			<a class="js-next btn btn--small btn--next c-order-nextStep" id="nextBtn">Next Step</a>
+		</form>
+	</body>
+	</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Word Cloud and Word Tree</title>
+        <meta name="author" content="Pulkit Dureja">
+        <meta name="keywords" content="Word, cloud , tree">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/d3.v3.min.js"></script>
+        <script src="js/d3.layout.cloud.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    </head>
+    <body>
+        <h2>WordCloud and WordTree</h2>
+        <div id="wordCloudTreeDiv" >
+        <div id="wordCloud" style="vertical-align:top;width:55%;height: 450px;display: inline-block; border: 1px solid #7FDBFF">
+
+        </div>
+        <div id="wordtree_basic" style="width: 30%; height: 450px; border:1px solid #7FDBFF;display: inline-block"></div><br>
+        </div>
+        <script type="text/javascript">
+          
+        function generate(text){
+            
+                console.log(text);
+            finalData=[];
+            finalData.push(['Phrases']);
+            finalData.push([text]);
+            google.charts.load('current', {packages:['wordtree']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable(finalData);
+                var options = {
+                    wordtree: {
+                        format: 'implicit',
+                        font: 'Times-Roman'
+                    }
+                };
+                var chart = new google.visualization.WordTree(document.getElementById('wordtree_basic'));
+                 chart.draw(data, options);
+        }
+        </script>
+        <script defer>
+
+
+            function makeWordCloud(ipTxt) {
+
+
+                var givenText = ipTxt;
+
+                 //alert("Drawing word cloud with initial text");
+               
+                var ipElts = givenText.split(" ");
+                var freqObj = {};
+
+                for (var i = 0; i < ipElts.length; i++) {
+
+
+                    if (freqObj[ipElts[i]] === undefined) {
+                        freqObj[ipElts[i]] = 1;
+                    } else {
+                        var curr = freqObj[ipElts[i]];
+                        curr++;
+                        freqObj[ipElts[i]] = curr;
+                    }
+
+                }
+
+                //initial frequency list
+                var freqList = [];
+
+                for (var key in freqObj) {
+                    if (freqObj.hasOwnProperty(key) && key != "") {
+                        freqList.push({"text": key, "size": freqObj[key] * 17});
+                    }
+                }
+
+
+                var color = d3.scale.linear()
+                    .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
+                    .range(["#7FDBFF", "#39CCCC", "#3D9970", "#01FF70", "#FFDC00", "#DDDDDD", "#85144b", "#FF4136", "#FF851B", "#90EE90", "#AAAAAA", "#001f3f"]);
+
+                d3.layout.cloud().size([800, 300])
+                    .words(freqList)
+                    .rotate(0)
+                    .fontSize(function (d) {
+                        return d.size;
+                    })
+                    .on("end", draw)
+                    .start();
+
+                function draw(words) {
+                    d3.select("#wordCloud").append("svg")
+                        .attr("width", 850)
+                        .attr("height", 350)
+                        .attr("class", "wordcloud")
+                        .append("g")
+                        // without the transform, words words would get cutoff to the left and top, they would
+                        // appear outside of the SVG area
+                        .attr("transform", "translate(320,200)")
+                        .selectAll("text")
+                        .data(words)
+                        .enter().append("text")
+                        .style("font-size", function (d) {
+                            return d.size + "px";
+                        })
+                        .style("fill", function (d, i) {
+                            return color(i);
+                        })
+                        .attr("transform", function (d) {
+                            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                        })
+                        .text(function (d) {
+                            return d.text;
+                        });
+                }
+            }
+
+            makeWordCloud();
+
+
+        </script>
+
+        <div style="text-align:center">
+        <textarea id="text" rows="30" cols="100" style="max-height:180px; background: #7FDBFF;">
+Apply Rx Levo Throxiane everyday. Take Threonine on empty stomach everyday.
+ Apply Rx Nystatin Cream to lesions every 4 to 6 hours. Keep from scratching or other irritations. Also, keep areas well learned to prevent from spreading. Will Samuel for follow-up appointment in one week. If any questions or conditions worsen contact doctor immediately
+I Rama Murthy, MD diagnosed Devi with borderline Myotonic MUSCULAR dystrophy (MMD). MMD is where muscles have difficulty relaxing and mild heart problems.
+55 year old male Caucasian with a history of diabetes mel­ litus and chronic renal insufficiency now with atrial fibrillation, rapid ventricular rate, congestive heart failure exacerbation and right leg cellulitis going to 10W telemetry unit.
+        </textarea>
+            <div>
+                <button style="padding: 10px;background-color: #2ECC40;color: white;" onclick="getWordCloud();">
+                    Generate word cloud and word tree
+                </button>
+                <button style="padding: 10px;background-color: #FF4136;color: white;">Cancel</button>
+            </div>
+            <script defer>
+                function getWordCloud() {
+                    var inputBox = document.getElementById("text");
+                    var wordCloudDiv = document.getElementById("wordCloud");
+                    wordCloudDiv.innerHTML = "";
+                    makeWordCloud(inputBox.value);
+                    generate(document.getElementById('text').value);
+                }
+                getWordCloud();
+            </script>
+        </div>
+    </body>
+</html>

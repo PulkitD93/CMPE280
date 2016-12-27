@@ -1,0 +1,3 @@
+Assignment GOAL:
+
+Create a Registration Page and Display the password strength and hint the user on how to create a strong password, alert the user if the password is weak and dont allow a user to register with a weak passord.

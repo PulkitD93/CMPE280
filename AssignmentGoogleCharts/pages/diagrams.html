@@ -1,0 +1,24 @@
+<html>
+  <head>
+	<title>Pizza Builder</title>
+	<meta name="author" content="Pulkit Dureja">
+	<meta name="description" content="Pizza Builder">
+	<link rel="stylesheet" type="text/css" href="../css/pizza.css">
+	<script type="text/javascript" src="../jquery/jquery-3.1.1.min.js"></script>
+	
+</head>
+  <body>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  	<div class="progressWrapper progress" > 
+		<div class="leftEndcap progress__step progress__step--static is-hidden@handheld"></div>
+		<div class="step progress__step c-sizeCrust activeStep" id="sizeCrust"></div>
+		<div class="step progress__step c-cheeseSauce activeStep" id="cheeseSauce">Dashboard</div>
+		<div class="step progress__step c-toppings activeStep" id="toppings"></div>
+		<div class="rightEndcap progress__step progress__step--static is-hidden@handheld rightActiveEndcap"></div>
+	</div>
+  	<div id="pieChart" style=" border-radius: 10px;background: black;padding: 10px;"></div>
+  	<div id="sankey" style="width: 900px; height: 300px;"></div>
+  	<script type="text/javascript" src="../js/diaGendata.js"></script>
+  	<a id="=redirectHome" class="js-next btn btn--small btn--next c-order-nextStep" onclick="redirect()">HOME</a>
+  </body>
+</html>

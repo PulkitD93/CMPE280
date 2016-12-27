@@ -1,0 +1,10 @@
+Assignment Goal:
+Learn Websockets
+Build a scoring application which updates the scoreboard using websockets.
+Allow the user to tune-out and tune in whenever he wants from the server.
+
+Instructions:
+
+Kindly run the node server before running the application.
+Then open index.html to view the live scoring.
+

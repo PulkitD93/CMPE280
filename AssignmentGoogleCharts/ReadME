@@ -1,0 +1,9 @@
+Assignment Goal:
+
+To build a Pizza Ordering website and display visulizations such as a pie chart and Sankey chart using Google Charts charting library.
+
+
+Steps:
+Kindly Run the index file and ensure tha there is active internet conncetion to run this application.
+The Sankey Chart is generated over the size and pizza crust.(This might require you to run the application multiple times to generate an elaborate diagram.)
+The pie chart is generated over the popularity of toppings.

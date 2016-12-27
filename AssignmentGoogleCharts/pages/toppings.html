@@ -1,0 +1,93 @@
+<html>
+<head>
+	<title>Pizza Builder</title>
+	<meta name="author" content="Pulkit Dureja">
+	<meta name="description" content="Pizza Builder">
+	<link rel="stylesheet" type="text/css" href="../css/pizza.css">
+	<script type="text/javascript" src="../jquery/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/diaGen.js"></script>
+	
+</head>
+<body>
+	<h1 align="center">Build Your Own Pizza</h1>
+	<div class="progressWrapper progress" > 
+		<div class="leftEndcap progress__step progress__step--static is-hidden@handheld">(</div>
+		<div class="step progress__step c-sizeCrust activeStep" id="sizeCrust">Size &amp; Crust</div>
+		<div class="seperator progress__step progress__step--static activeSeperator seperatorBoth">/</div>
+		<div class="step progress__step c-cheeseSauce activeStep" id="cheeseSauce">Cheese &amp; Sauce</div>
+		<div class="seperator progress__step progress__step--static activeSeperator seperatorBoth">/</div>
+		<div class="step progress__step c-toppings activeStep" id="toppings">Toppings</div>
+		<div class="rightEndcap progress__step progress__step--static is-hidden@handheld rightActiveEndcap">)</div>
+	</div>
+
+	<form action="">
+	<div class="card card--pop card--pizza-options">
+		<div id="toppingsWrapper" class="is-hidden grid toppings-list" style="display: block;">
+			<div class="grid__cell--1">
+				<h2 class="step-title">Choose Toppings</h2>
+			</div>
+			<div class="product grid__cell--1/2@desktop grid__cell--1">
+				<h3 class="section-title">Choose Meats</h3>
+				<div class="grid">
+					<div class="toppingColumn grid__cell--1/2@desktop grid__cell--1">
+						<div class="topping">
+							<label class="form__control-group--toggle">
+								<input type="checkbox" class="selectTopping c-topping-P topping-P" name="S_PIZZA|Topping" value="Pepperoni">
+								<span class="btn--toggle">Pepperoni</span>
+							</label>
+							<label class="form__control-group--toggle">
+								<input type="checkbox" class="selectTopping c-topping-Sb topping-Sb" name="S_PIZZA|Topping" value="SIS"> <span class="btn--toggle">Sliced Italian Sausage</span>
+							</label>
+							<label class="form__control-group--toggle">
+								<input type="checkbox" class="selectTopping c-topping-Sb topping-Sb" name="S_PIZZA|Topping" value="Bacon"> <span class="btn--toggle">Bacon</span>
+							</label>
+							<label class="form__control-group--toggle">
+								<input type="checkbox" class="selectTopping c-topping-Sb topping-Sb" name="S_PIZZA|Topping" value="Salami"> <span class="btn--toggle">Salami</span>
+							</label>
+							<label class="form__control-group--toggle">
+								<input type="checkbox" class="selectTopping c-topping-Sb topping-Sb" name="S_PIZZA|Topping" value="PChicken"> <span class="btn--toggle">Premium Chicken</span>
+							</label>
+								
+						</div>  
+					</div>	
+				</div>
+			</div>
+
+			<div class="product grid__cell--1/2@desktop grid__cell--1" style="border: 0px;">
+				<h3 class="section-title">Choose Non-meats</h3>
+					<div class="grid">
+						<div class="toppingColumn grid__cell--1/2@desktop grid__cell--1">
+							<div class="topping"> 
+								<label class="form__control-group--toggle">
+									<input type="checkbox" class="selectTopping c-topping-E topping-E" name="S_PIZZA|Topping" value="CCheese">
+									<span class="btn--toggle">Cheddar Cheese</span>
+								</label>
+								<label class="form__control-group--toggle">
+									<input type="checkbox" class="selectTopping c-topping-E topping-E" name="S_PIZZA|Topping" value="Onions">
+									<span class="btn--toggle">Onions</span>
+								</label>
+								<label class="form__control-group--toggle">
+									<input type="checkbox" class="selectTopping c-topping-E topping-E" name="S_PIZZA|Topping" value="Mushrooms">
+									<span class="btn--toggle">Mushrooms</span>
+								</label><label class="form__control-group--toggle">
+									<input type="checkbox" class="selectTopping c-topping-E topping-E" name="S_PIZZA|Topping" value="GPeppers">
+									<span class="btn--toggle">Green Peppers</span>
+								</label><label class="form__control-group--toggle">
+									<input type="checkbox" class="selectTopping c-topping-E topping-E" name="S_PIZZA|Topping" value="BOlives">
+									<span class="btn--toggle">Black Olives</span>
+								</label>
+							</div>
+
+						</div>
+					</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	<a type="submit" class="js-next btn btn--small btn--next c-order-nextStep" id="build">Build Order</a>
+	<button type="reset" class="cancelBtn">Cancel</button>
+	</form>
+</body>
+</html>

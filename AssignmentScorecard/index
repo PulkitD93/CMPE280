@@ -1,0 +1,23 @@
+<html>
+<head>
+ <title>Live Score</title>
+ <meta name="author" content="Pulkit Dureja" >
+ <meta name="description" content="Cricket Scoreboard" >
+ <link rel="stylesheet" type="text/css" href="css/myCss.css">
+   
+<script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+<script src="js/score.js"></script>
+  </head>
+  <body>
+  	<div class="scorecard">
+  	<div class="head">Live Score</div>
+  	<div class="innerbox">Live Sporting Event: Cricket<br>
+  	<div id="Score">
+  	</div>
+  	</div>
+  	<div class="innerbox">
+  	<button class="submit" id="tuneIn">Tune-in</button>
+  	<button class="cancel" id="tuneOut">Tune-out</button>
+  	</div>
+  </body>
+</html>

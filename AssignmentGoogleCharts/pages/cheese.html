@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>Pizza Builder</title>
+	<meta name="author" content="Pulkit Dureja">
+	<meta name="description" content="Pizza Builder">
+	<link rel="stylesheet" type="text/css" href="../css/pizza.css">
+	<script type="text/javascript" src="../jquery/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/diaGen.js"></script>
+	
+</head>
+<body>
+	<h1 align="center">Build Your Own Pizza</h1>
+	<div class="progressWrapper progress" > 
+		<div class="leftEndcap progress__step progress__step--static is-hidden@handheld">(</div>
+		<div class="step progress__step c-sizeCrust activeStep" id="sizeCrust">Size &amp; Crust</div>
+		<div class="seperator progress__step progress__step--static activeSeperator seperatorBoth">/</div>
+		<div class="step progress__step c-cheeseSauce activeStep" id="cheeseSauce">Cheese &amp; Sauce</div>
+		<div class="seperator progress__step progress__step--static activeSeperator">/</div>
+		<div class="step progress__step c-toppings" id="toppings">Toppings</div>
+		<div class="rightEndcap progress__step progress__step--static is-hidden@handheld">)</div>
+	</div>
+	<form>
+		<div class="card card--pop card--pizza-options"> 
+			<div id="cheeseSauceWrapper" class="is-hidden grid" style="display: block;">
+				<div class="grid__cell--1"> 
+				 	<h2 class="step-title">Choose Cheese &amp; Sauce</h2>
+				</div>
+				<div class="product choose-cheese grid__cell--1 grid__cell--1/4@desktop">
+				 	<h3 class="section-title">Cheese?</h3>
+				 	<div class="topping cheese"> 
+				 		<label class="form__control-group--toggle" >
+				 		<input type="checkbox" class="selectTopping c-topping-C" name="S_PIZZA|Topping|C|SPLIT" id="cheeseCheck">
+				 		Cheese
+				 		</label>
+				 		<div class="toppingSettings is-hidden" style="display: block;" > 
+				 			<div class="topping split">
+				 				<select aria-label="Cheese Amount" class="weight" name="Weight|C--1" hidden id="cheeseType">
+					 				<option value="0" style="display: none;">None</option>
+					 				<option value="0.5">Light</option>
+					 				<option selected="" value="1">Normal</option>
+					 				<option value="1.5">Extra</option>
+					 				<option value="2">Double</option>
+					 			</select>
+				 			</div>
+				 		</div> 
+					</div>   
+
+				</div>
+			<div class="product choose-sauce grid__cell--1 grid__cell--1/2@desktop grid__cell--1@widescreen" style="border: 0px;">
+				<h3 class="section-title">Choose a sauce</h3>
+				<div class="topping">
+						<label class="form__control-group--toggle" >
+						<input type="checkbox" class="selectSauce" name="selectSauceToggle" id="sauceCheck">
+						Sauce
+						</label>
+				</div>
+				<div class="toppingSettings sauceSelection" id="toppingSelect" hidden=""> 
+					<div class="topping sauce"> 
+						<label> 
+							<input type="radio" class="selectTopping c-topping-X" name="S_PIZZA|Topping" value="RITS"> 
+								<span class="btn--toggle">Robust Inspired Tomato Sauce</span>
+						</label>
+					</div>
+					<div class="topping sauce">
+						<label>
+							<input type="radio" class="selectTopping c-topping-Xm" name="S_PIZZA|Topping" value="HMS">
+							<span class="btn--toggle">Hearty Marinara Sauce</span>
+						</label> 
+					</div>
+					<div class="topping sauce">
+						<label> 
+							<input type="radio" class="selectTopping c-topping-Bq" name="S_PIZZA|Topping" value="BS">
+							<span class="btn--toggle">BBQ Sauce</span> 
+						</label>
+					</div>
+					<div class="topping sauce">
+						<label>
+							<input type="radio" class="selectTopping c-topping-Xw" name="S_PIZZA|Topping" value="G{WS">
+							<span class="btn--toggle">Garlic Parmesan White Sauce</span>
+						</label>
+					</div>
+					<div class="topping sauce">
+						<label>
+							<input type="radio" class="selectTopping c-topping-Xf" name="S_PIZZA|Topping" value="AS">
+							<span class="btn--toggle">Alfredo Sauce</span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+			<a class="js-next btn btn--small btn--next c-order-nextStep" id="nextBtn2">Next Step</a>
+			
+	</div>
+	</form>
+</body>
+</html>

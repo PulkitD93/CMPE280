@@ -1,0 +1,57 @@
+ <html lang="en-US">
+	 <head>
+	 	<title>Survey</title>
+	 	<meta charset="UTF-8">
+	 	<meta name="description" content="Survey">
+	 	<meta name="author" content="Pulkit Dureja">
+	 	<link rel="stylesheet" type="text/css" href="../css/Pulkit.css">
+	 	<script type="text/javascript" src="../js/examApp.js"></script>
+	 </head>
+	 
+	 	<body>
+	 	
+	 		<header class="header">
+	 			<h2>Survey</h2>
+	 		</header>
+	 		<div class="container">
+	 			<p>How did you like the center?</p>
+	 			Comments: <br>
+	 			<textarea id="feedback" rows="4" cols="100"></textarea>
+	 			<h4>Select Text Area Location:</h4>
+	 		<br>
+	 		City:&nbsp
+	 		<input list="cities" name="city">
+  				<datalist id="cities">
+    				<option><data value=123546>San Jose</data>
+    				<option><data value=785436>San Francisco</data>
+    				<option><data value=022236>Mountain View</data>
+    				<option><data value=617313>Palo Alto</data>
+    				<option><data value=46278>Redwood City</data>
+  				</datalist>
+  			Room Number#: &nbsp
+  			<input list="rooms" name="room">
+  				<datalist id="rooms">
+    				<option><data value=326807>Room 210</data>
+    				<option><data value=328807>Room 110</data>
+    				<option><data value=321207>Room 410</data>
+    				<option><data value=326875>Room 337</data>
+    				<option><data value=326834>Room 376</data>
+    				
+    				
+  				</datalist>
+  				<br>
+  				<br><br>
+  				<section class="right">
+	 		<button type="submit" name="submit" onclick="getScore()" class="submit-button">Submit & Get Score</button>
+
+	 		<button  name="skip" onclick="getScore()" >Skip & Get Score</button>
+	 			</section>	
+	 			<br>
+	 			<br>
+	 		</div>
+
+<footer class="footer">
+	<p>Created By: Pulkit Dureja</p>
+</footer>
+</body>
+</html>

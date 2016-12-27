@@ -1,0 +1,71 @@
+ <html lang="en-US">
+	 <head>
+	 	<title>Summary</title>
+	 	<meta charset="UTF-8">
+	 	<meta name="description" content="Summary">
+	 	<meta name="author" content="Pulkit Dureja">
+	 	<link rel="stylesheet" type="text/css" href="../css/Pulkit.css">
+	 	<script type="text/javascript" src="../js/examApp.js"></script>
+	 	<script>
+      function load() {
+      	var qScore=parseInt(localStorage.getItem('qScore'));
+      	var rScore=parseInt(localStorage.getItem('avScore'));
+      	var vScore=parseInt(localStorage.getItem('avScore'));
+      	var qAttempt=parseInt(localStorage.getItem('qAttempt'));
+      	var rAttempt=parseInt(localStorage.getItem('rAttempt'));
+      	var vAttempt=parseInt(localStorage.getItem('avAttempt'));
+        document.getElementById("qCorrect").innerHTML=qScore;
+        document.getElementById("rCorrect").innerHTML=rScore;
+        document.getElementById("vCorrect").innerHTML=vScore;
+        document.getElementById("qCount").innerHTML=qAttempt
+        document.getElementById("rCount").innerHTML=rAttempt
+        document.getElementById("vCount").innerHTML=vAttempt
+        
+        document.getElementById("qScore").innerHTML=(qScore/qAttempt)*100;
+        document.getElementById("rScore").innerHTML=(rScore/rAttempt)*100;
+        document.getElementById("vScore").innerHTML=(vScore/vAttempt)*100;
+        
+        localStorage.clear();
+      }
+      window.onload = load;
+    </script>
+	 </head>
+	 
+	 	<body>
+	 	
+	 		<header class="header">
+	 			<h2>Summary</h2>
+	 		</header>
+	 		<div class="container">
+	 			<section>
+	 				<details>
+	 					<summary>Quantitative Section</summary>
+	 					<p>Number of Questions Answered : <span id="qCount"></span></p>
+	 					<p>Number of Correct Answers : <span id="qCorrect"></span></p>
+	 					<p>Score : <span id="qScore"></span></p>
+	 				</details>
+	 				
+	 				<details>
+	 					<summary>Reading Section</summary>
+	 					<p>Number of Questions Answered : <span id="rCount"></span></p>
+	 					<p>Number of Correct Answers : <span id="rCorrect"></span></p>
+	 					<p>Score : <span id="rScore"></span></p>
+	 				</details>
+	 				
+	 				<details>
+	 					<summary>Audio/Video Section</summary>
+	 					<p>Number of Questions Answered : <span id="vCount"></span></p>
+	 					<p>Number of Correct Answers : <span id="vCorrect"></span></p>
+	 					<p>Score : <span id="vScore"></span></p>
+	 				</details>
+
+	 			</section>
+	 		</div>
+
+<footer class="footer">
+	<b>Thank You!</b>
+	<br>
+	<button onclick=window.close()>FINISH</button>
+</footer>
+</body>
+</html> 

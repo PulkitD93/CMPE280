@@ -1,0 +1,38 @@
+.scorecard{
+	margin: 100px;
+	border-style: solid;
+	border-color: 336DC3;
+
+} 
+.head{
+	background-color: 336DC3;
+	font-size: 30;
+	text-align: center;
+	color: white;
+
+}
+.innerbox{
+	padding: 50px;
+}
+.submit {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center
+}
+.cancel{
+	width: 20%;
+    background-color: #EB0020;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center
+}
