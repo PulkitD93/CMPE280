@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>Search</title>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/slideMenu.css">
+        <script src="js/jquery-3.1.1.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <script type="text/javascript" src="js/auth.js"></script>
+    </head>
+    <body class="bodyBackgroundSearch">
+        <div id="main" style="width: 100%;margin: 0 auto">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h1 style="color: white;margin:20px;"><b>SEARCH</b></h1>
+                <a href="/" onclick="navigateToUrl(event,'/app/NewsFeed.html')"><img
+                        src="https://s12.postimg.org/4ypurz3od/back.png" width="40" height="40"
+                        style="vertical-align: middle;margin-top: -7px;"> NEWS FEED</a>
+                <input placeholder="Search.." onkeyup="doSearch(event)">
+                <a href="/" onclick="logout(event)">Logout</a>
+            </div>
+            <div class="mobileNavigationBar" style="width: 100%">
+                <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+            </div>
+            <nav class="normalNavigationBar">
+                <h1 style="color: white;position: absolute;left: 2%;top: 0px;"><b>SEARCH</b></h1>
+                <input class="searchInput" placeholder="Search.." onkeyup="doSearch(event)" style="left: 15%">
+                <a href="/" onclick="logout(event)">Logout</a>
+            </nav>
+            <div id="wrapperSearch" style="margin-left: auto;margin-right: auto;">
+                <div id="userlistBlock">
+                </div>
+                <div id="newsFeedBlock" class="newsFeedBlock">
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/search.js"></script>
+        <script>
+            var searchTerm = localStorage.getItem("searchTerm");
+            if (searchTerm !== null) {
+                search(searchTerm);
+            }
+        </script>
+        <script>
+
+            /**
+             * For sliding menu navigation
+             */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
+    </body>
+</html>

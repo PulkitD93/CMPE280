@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>Welcome to Fitbit Social Network</title>
+        <script type="text/javascript" src="js/jquery-3.1.1.slim.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/slideMenu.css">
+        <style>
+            .mobileNavigationBar {
+                position: fixed;
+                width: 100%;
+            }
+
+            @media only screen and (max-width: 1000px) {
+                #myCarousel-div1, #myCarousel-div2, #myCarousel-div3, #myCarousel-div4 {
+                    margin-bottom: 0%;
+                }
+
+                #myCarousel-div1 h1, #myCarousel-div2 h1, #myCarousel-div3 h1, #myCarousel-div4 h1 {
+                    font-size: 2.5rem;
+                }
+
+                #myCarousel-div1 p, #myCarousel-div2 p, #myCarousel-div3 p, #myCarousel-div4 p {
+                    font-size: 1.5rem;
+                }
+
+            }
+
+            @media only screen and (min-width: 1000px) {
+                #myCarousel-div1 {
+                    margin-bottom: 30%;
+                }
+
+                #myCarousel-div2 {
+                    margin-bottom: 14%;
+                }
+
+                #myCarousel-div3 {
+                    margin-bottom: 30%;
+                }
+
+                #myCarousel-div4 {
+                    margin-bottom: 22%;
+                }
+
+                #myCarousel-div1 h1, #myCarousel-div2 h1, #myCarousel-div3 h1, #myCarousel-div4 h1 {
+                    font-size: 8rem;
+                }
+
+                #myCarousel-div1 p, #myCarousel-div2 p, #myCarousel-div3 p, #myCarousel-div4 p {
+                    font-size: 3rem;
+                }
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h1 style="color: white;margin: 20px;">Fitbit Social Network</h1>
+                <a href="/" onclick="navigateToUrl(event,'/app/Login.html')">Login</a>
+                <a href="/" onclick="navigateToUrl(event,'/app/Signup.html')">Signup</a>
+            </div>
+            <div class="mobileNavigationBar" style="">
+                <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Fitbit Social Network - Login / Signup</span>
+            </div>
+            <nav class="normalNavigationBar">
+                <a href="/" onclick="navigateToUrl(event,'/app/Login.html')">Login</a>
+                <a href="/" onclick="navigateToUrl(event,'/app/Signup.html')">Signup</a>
+            </nav>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="images/image1.jpg" alt="runImage 1">
+                        <div class="carousel-caption" id="myCarousel-div1">
+                            <h1>Social</h1>
+                            <p>Socialize with people who are enthusiastic about fitness.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/image0.jpg" alt="runImage 2">
+                        <div class="carousel-caption" id="myCarousel-div2">
+                            <h1>Compete</h1>
+                            <p>Compete with friends and others for a place in the global
+                                ranking</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/image2.jpg" alt="runImage 3">
+                        <div class="carousel-caption" id="myCarousel-div3">
+                            <h1>Achievements</h1>
+                            <p>Show your achievements to your friends and others</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="images/image4.jpg" alt="runImage 4">
+                        <div class="carousel-caption" id="myCarousel-div4">
+                            <h1>Search</h1>
+                            <p>Search for important stuff posted by others</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div id="introBoxIndex" class="introBox">
+                <h1>Welcome to Fitbit Social Network</h1>
+            </div>
+        </div>
+        <script>
+
+            /**
+             * For sliding menu navigation
+             */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
+    </body>
+</html>

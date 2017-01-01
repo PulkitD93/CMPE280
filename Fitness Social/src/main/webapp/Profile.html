@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>Profile</title>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/profile.css">
+        <link rel="stylesheet" href="css/slideMenu.css">
+        <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+        <script type="text/javascript" src="js/auth.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <body class="blurredBackground">
+        <div id="main">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h1 style="color: white;margin:20px;">PROFILE</h1>
+                <a href="/" onclick="navigateToUrl(event,'/app/NewsFeed.html')"><img
+                        src="https://s12.postimg.org/4ypurz3od/back.png" width="40" height="40" style="vertical-align: middle;margin-top: -7px;"> NEWS FEED</a>
+                <a href="/" onclick="navigateToUrl(event,'/app/Profile.html')">Profile</a>
+                <a href="/" onclick="logout(event)">Logout</a>
+            </div>
+            <div class="mobileNavigationBar">
+                <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+            </div>
+            <div id="statusHolder">
+            </div>
+            <nav class="normalNavigationBar">
+                <a class="newsFeedLink" href="/" onclick="navigateToUrl(event,'/app/NewsFeed.html')"><img
+                        src="https://s12.postimg.org/4ypurz3od/back.png" width="60" height="60"></a>
+                <a href="/" onclick="navigateToUrl(event,'/app/Profile.html')" class="newsFeedLink"
+                   style="margin-left: 10%">Profile</a>
+                <a href="/" onclick="logout(event)">Logout</a>
+            </nav>
+            <div id="wrapperProfile">
+                <div class="topBlock">
+                    <img id="profilePic" class="profilePic boxShadowBig"
+                         src="https://static0.fitbit.com/images/profile/defaultProfile_150_male.gif"
+                         style="margin-top: 20px" width="310" height="300">
+                    <div class="infoDisplay">
+                        <h1 id="username"></h1>
+                        <h4 id="userdescription"></h4>
+                        <h4 id="useraddress" style="margin-top: 20px;"></h4>
+                        <h5 id="userheight"></h5>
+                        <h5 id="userage"></h5>
+                        <h5 id="userweight"></h5>
+                        <h5 id="userdob"></h5>
+                        <h5 id="usergender"></h5>
+                        <button id="addFriendButton" class="btn btn-info"
+                                style="display: none;">Add Friend
+                        </button>
+                        <div id="confirmFriendDiv" style="display: none">
+                            <button id="confirmFriendButton" class="btn btn-info">Confirm Friend Request
+                            </button>
+                            <button id="rejectFriendButton" class="btn btn-danger">Reject Friend Request
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottomBlock">
+                    <div class="extraInfoBlock">
+                        <div class="averageDailySteps boxShadowBig">
+                            <h2><b>Average Daily Steps</b></h2>
+                            <h3 id="averageDailySteps" style="color: #858585">2345</h3>
+                        </div>
+                        <div id="badges" class="badgesBlock boxShadowBig">
+                            <h2><b>Badges</b></h2>
+                        </div>
+                    </div>
+                    <div id="newsFeedBlockContainer">
+                        <div id="newsFeedBlock" class="newsFeedBlock">
+                        </div>
+                    </div>
+                    <div id="charts">
+                        <div id="stepsChartsUser" style="margin-bottom: 20px;padding:20px;border: 1px solid black"
+                             class="boxShadowBig"></div>
+                        <div id="caloriesChartsUser" style="margin-bottom: 20px;padding:20px;border: 1px solid black"
+                             class="boxShadowBig"></div>
+                        <div id="waterChartsUser" style="margin-bottom: 20px;padding:20px;border: 1px solid black"
+                             class="boxShadowBig"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/profile.js"></script>
+        <script>
+            initProfile();
+        </script>
+        <script type="text/javascript">
+
+            var currentUserEmail = localStorage.getItem("userEmail");
+            var currentUserToken = localStorage.getItem("userToken");
+            var currentProfileEmail = localStorage.getItem("currentProfileEmail");
+            var url = "/app/week/dashboard?userToken=" + currentUserToken;
+
+
+            if (currentProfileEmail !== null && currentProfileEmail !== currentUserEmail) {
+                url = "/app/week/friendDashboard?userToken=" + currentUserToken + "&email=" + currentProfileEmail;
+            } else {
+                console.log("My Dashboard");
+                url = "/app/week/dashboard?userToken=" + currentUserToken;
+            }
+
+            var reqObj = {};
+            ajaxCall("GET", url, reqObj, function (status, resData) {
+
+
+                var stepsGraphArray = new Array();
+                var caloriesGraphArray = new Array();
+                var waterGraphArray = new Array();
+
+                if (status === 200) {
+
+                    var data = JSON.parse(resData);
+                    var resList = data.list;
+
+                    console.log(resList);
+
+                    //for storing steps graph array
+                    for (var i = 0; i < resList.length; i++) {
+                        stepsGraphArray.push([resList[i].recdate, resList[i].stepCount]);
+                    }
+
+                    //for reading calories graph array
+                    for (var j = 0; j < resList.length; j++) {
+                        caloriesGraphArray.push([resList[j].recdate, resList[j].caloriesBurnt, resList[j].caloriesGoal]);
+                    }
+
+                    //for reading water graph array
+                    for (var k = 0; k < resList.length; k++) {
+                        waterGraphArray.push([resList[k].recdate, resList[k].waterConsumed, resList[k].waterGoal]);
+                    }
+
+                    //draw charts
+                    google.charts.load('current', {'packages': ['line']});
+                    google.charts.setOnLoadCallback(drawChartSteps);
+                    google.charts.setOnLoadCallback(drawChartCalories);
+                    google.charts.setOnLoadCallback(drawChartWater);
+
+
+                    function drawChartSteps() {
+
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Date');
+                        data.addColumn('number', 'Step Count');
+
+                        data.addRows(stepsGraphArray);
+
+                        var options = {
+                            chart: {
+                                title: 'Steps Count'
+                            },
+                            width: 400,
+                            height: 350,
+                            axes: {
+                                x: {
+                                    0: {side: 'top'}
+                                }
+                            }
+                        };
+
+                        var chart = new google.charts.Line(document.getElementById('stepsChartsUser'));
+
+                        chart.draw(data, options);
+                    }
+
+                    function drawChartCalories() {
+
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Date');
+                        data.addColumn('number', 'calories Burnt');
+                        data.addColumn('number', 'calories Goal');
+
+                        data.addRows(caloriesGraphArray);
+
+                        var options = {
+                            chart: {
+                                title: 'Calories Stats'
+                            },
+                            width: 400,
+                            height: 350,
+                            axes: {
+                                x: {
+                                    0: {side: 'top'}
+                                }
+                            }
+                        };
+
+                        var chart = new google.charts.Line(document.getElementById('caloriesChartsUser'));
+
+                        chart.draw(data, options);
+                    }
+
+                    function drawChartWater() {
+
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Date');
+                        data.addColumn('number', 'Water Consumed');
+                        data.addColumn('number', 'Water Goal');
+
+                        data.addRows(waterGraphArray);
+
+                        var options = {
+                            chart: {
+                                title: 'Water Stats'
+                            },
+                            width: 400,
+                            height: 350,
+                            axes: {
+                                x: {
+                                    0: {side: 'top'}
+                                }
+                            }
+                        };
+
+                        var chart = new google.charts.Line(document.getElementById('waterChartsUser'));
+
+                        chart.draw(data, options);
+                    }
+                } else {
+                    console.log("Problem drawing charts, check weekly dashboard api - status - " + status);
+                }
+            });
+        </script>
+        <script>
+
+            /**
+             * For sliding menu navigation
+             */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
+    </body>
+</html>

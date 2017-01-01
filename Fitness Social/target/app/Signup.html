@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>Signup for Fitbit Social Network</title>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="js/auth.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <script>
+            //to check if fitbitUser is logged in. If logged in, redirect to news feed.
+            checkAuthentication("Signup.html");
+        </script>
+    </head>
+    <body class="backgroundBlack">
+        <nav style="justify-content: flex-start;">
+            <a style="color: white;font-size: 2rem;border: none;border-radius: 0" href="/"
+               onclick="navigateToUrl(event,'/app/index.html')">Fitbit Social Network</a>
+        </nav>
+        <form name="signupForm" id="signupForm" onsubmit="signup(event)">
+            <div id="error" style="display: none;">
+            </div>
+            <div>
+                <div>
+                    First Name<br>
+                    <input type="text" name="firstName" autofocus onfocus="boxShadowOnFocus(event);"><br>
+                    Last Name<br>
+                    <input type="text" name="lastName" onfocus="boxShadowOnFocus(event);"><br>
+                    Email<br>
+                    <input type="email" name="email" onfocus="boxShadowOnFocus(event);">
+                </div>
+                <div>
+                    Password<br>
+                    <input type="password" name="password" onfocus="boxShadowOnFocus(event);"><br>
+                    Gender<br>
+                    <input type="radio" name="gender" value="male"> Male
+                    <input type="radio" name="gender" value="female"> Female<br>
+                    <div id="locationDiv" style="margin-top: 10px;">
+                        The location data helps us in improving the fitbitUser experience.<br>
+                        <button type="button" onclick="getCurrentLocation(event);">Enable Location</button>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Signup" form="signupForm">
+        </form>
+        <script>
+            var obj = getAllUrlParams(window.location.href);
+            console.log("Error message : " + obj["errorMessage"]);
+            if (obj["errorMessage"] === "emailexists") {
+                document.getElementById("error").innerHTML = "Please enter another email, this email already exists.";
+                document.getElementById("error").style.display = "block";
+            }
+        </script>
+    </body>
+</html>

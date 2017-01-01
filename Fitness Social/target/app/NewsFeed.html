@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>News Feed</title>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/newsfeed.css">
+        <link rel="stylesheet" href="css/slideMenu.css">
+        <script src="js/jquery-3.1.1.js"></script>
+        <script type="text/javascript" src="js/auth.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <script>
+            checkAuthentication();
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            {
+                var url = "/app/rank?userToken=" + localStorage.getItem("userToken");
+                var reqObj = {};
+                ajaxCall("GET", url, reqObj, function (status, resData) {
+
+                    if (status === 200) {
+                        var dataArray = [['User', 'Fitness Points']];
+                        var resArray = JSON.parse(resData);
+                        for (var i = 0; i < resArray.length; i++) {
+                            dataArray.push([resArray[i].name, resArray[i].postCount]);
+                        }
+                        google.charts.load('current', {'packages': ['bar']});
+                        google.charts.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable(dataArray);
+
+                            var options = {
+                                chart: {
+                                    title: 'Global Fitness Ranking'
+                                },
+                                bars: 'horizontal',
+                                bar: {groupWidth: "50px"}
+                            };
+
+                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+                            chart.draw(data, options);
+                        }
+                    }
+                    else {
+                        console.error("Unable to fetch ranking");
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="blurredBackground">
+        <div id="main">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h1 style="color: white;margin:20px;">NEWS FEED</h1>
+                <a href="/" onclick="navigateToUrl(event,'/app/Profile.html')">Profile</a>
+                <input placeholder="Search.." onkeyup="doSearch(event)">
+                <a href="/" onclick="logout(event)">Logout</a>
+            </div>
+            <div class="mobileNavigationBar">
+                <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+            </div>
+            <div id="statusHolder">
+            </div>
+            <nav class="normalNavigationBar">
+                <h1 style="color: white;position: absolute;left: 2%;top: 0px;">NEWS FEED</h1>
+                <a id="profileLink" href="/" onclick="navigateToUrl(event,'/app/Profile.html')">Profile</a>
+                <input class="searchInput" placeholder="Search.." onkeyup="doSearch(event)">
+                <a href="/" onclick="logout(event)" id="logoutButton">Logout</a>
+            </nav>
+            <div id="wrapperNewsFeed">
+                <div id="friendInfo" style="display: flex;flex-direction: column;">
+                    <div id="friendSuggestionsBox" class="boxShadowSmall"
+                         style="padding: 20px;margin: 30px 10px 10px 30px;">
+                    </div>
+                    <div id="confirmFriendsBox" class="boxShadowSmall"
+                         style="padding: 20px;margin: 30px 10px 10px 30px;">
+                        <h2 style="margin-bottom: 10px;"><b>Confirm Friends</b></h2>
+                    </div>
+                    <div id="friendsBox" class="boxShadowSmall" style="padding: 20px;margin: 30px 10px 10px 30px;">
+                        <h2 style="margin-bottom: 10px;"><b>Friends</b></h2>
+                    </div>
+                </div>
+                <div id="midBlock">
+                    <div id="columnchart_material" style="padding: 30px;min-height: 400px"></div>
+                    <div style="margin: 10px;" id="newsFeedBlock" class="newsFeedBlock">
+                    </div>
+                </div>
+                <div id="stats">
+                    <div id="lifetimeStats" class="boxShadowSmall" style="padding: 20px;margin: 30px 30px 10px 10px;">
+                        <h2><b>Lifetime Stats</b></h2>
+                        <h3 style="margin-bottom: 20px;margin-top: 20px">Total</h3>
+                        <h5 id="lifetimeCaloriesOut">Calories Out</h5>
+                        <h5 id="lifetimeDistance">Total Distance</h5>
+                        <h5 id="lifetimeSteps">Total Steps</h5>
+                        <h3 style="margin-bottom: 20px;">Best in a Day</h3>
+                        <h5 id="bestDistance">Total Distance</h5>
+                        <h5 id="bestSteps">Total Steps</h5>
+                    </div>
+                    <div id="todayStats" class="boxShadowSmall" style="padding: 20px;margin: 30px 30px 10px 10px;">
+                        <h2><b>Today Stats</b></h2>
+                        <h4 id="caloriesOutToday">Calories Out</h4>
+                        <h4 id="caloriesGoal">Calories Goal</h4>
+                        <h4 id="waterConsumedToday">Water Consumed</h4>
+                        <h4 id="waterGoalToday">Water Goal</h4>
+                        <h4 id="totalStepsToday">Total Steps</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/newsfeed.js"></script>
+        <script>
+            getFriendSuggestions();
+            confirmFriends();
+            getFriends();
+            createNewsFeed(1);
+            getStats(new Date());
+        </script>
+        <script>
+
+            /**
+             * For sliding menu navigation
+             */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
+    </body>
+</html>

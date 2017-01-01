@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author"
+              content="Pulkit Dureja, Shikher Pandey, Shibunath Shanker, Vignesh Ramkumar, Ruchit Kadakia">
+        <meta name="description" content="Fitness Social Network">
+        <meta name="keywords"
+              content="Fitbit Social Network,Fitbit, Fitness, Social, Facebook, SugarFree, Gym, Muscle, Squat, Abs, Health, Fit, workout, Build, Builder, nutrient, absorption, transformation, fitness, plan, transformation, endurance, bench press, meal plan, muscle size, excercise, dumbell, heart">
+        <title>Login to Fitbit Social Network</title>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="js/auth.js"></script>
+        <script type="text/javascript" src="js/ajaxUtil.js"></script>
+        <script>
+            //to check if user is logged in. If logged in, redirect to news feed.
+            checkAuthentication("Login.html");
+        </script>
+    </head>
+    <body class="backgroundBlack">
+        <nav style="justify-content: flex-start;">
+            <a style="color: white;font-size: 2rem;border: none;border-radius: 0" href="/"
+               onclick="navigateToUrl(event,'/app/index.html')">Fitbit Social Network</a>
+        </nav>
+        <form id="loginForm" class="boxShadowBigStatus" onsubmit="login(event)">
+            <div id="error" style="display: none;">
+                Invalid email or password. Please enter correct and email password.
+            </div>
+            Email<br>
+            <input type="email" name="email" autofocus onfocus="boxShadowOnFocus(event);"><br>
+            Password<br>
+            <input type="password" name="password" onfocus="boxShadowOnFocus(event);"><br>
+            <input type="submit" value="Login">
+        </form>
+        <script>
+            var obj = getAllUrlParams(window.location.href);
+            if (obj["errorMessage"] === "wrongcredentials") {
+                document.getElementById("error").style.display = "block";
+            }
+        </script>
+    </body>
+</html>
