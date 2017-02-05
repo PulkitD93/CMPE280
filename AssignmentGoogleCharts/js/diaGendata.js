@@ -1,7 +1,7 @@
  google.charts.load("current", {packages:["sankey","corechart"]});
   google.charts.setOnLoadCallback(drawChart);
     function redirect() {
-      window.location.href="../index";
+      window.location.href="../index.html";
     }
    function drawChart() {
    	var screen10, screen12, screen14, p12ipaza, thin12, thin14, pbkikreza, p16ibkza, p10igfza;
